@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jonathan's Handyman Services — Mounting & Assembly in LA & OC</title>
+<meta name="description" content="Art, TVs, mirrors, shelves, and furniture installed by a meticulous LA & OC pro. Laser-leveled, premium anchors, done right the first time. Serving Los Angeles & Orange County since 2018.">
+
+<!--
+====================================================================
+  JONATHAN'S HANDYMAN SERVICES — one-page site
+  Host this file as-is on Hostinger, or use it as the blueprint for
+  your Squarespace build.
+
+  BEFORE YOU PUBLISH, find-and-replace these placeholders:
+    {{BOOKING_LINK}}     -> your Square Appointments / booking URL
+    {{PHONE}}            -> your phone number (e.g. (310) 555-0142)
+    {{PHONE_DIGITS}}     -> same number, digits only (e.g. 3105550142)
+    {{EMAIL}}            -> your email
+    {{INSTAGRAM_URL}}    -> https://instagram.com/yourhandle
+    {{INSTAGRAM_HANDLE}} -> @yourhandle
+    {{RATE}}             -> your hourly rate (e.g. 99)
+
+  TO DO:
+   - Swap the photo frames in "The Work" for your real before/afters.
+   - Replace the testimonial slots with your archived 5-star reviews
+     (keep them REAL — first name + last initial is plenty).
+   - Add your headshot in the About section.
+   - The "Insured" badge is commented out. Only switch it on if you
+     actually carry liability insurance.
+====================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..48,400;12..48,500;12..48,600;12..48,700;12..48,800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#1c1a16;
+    --ink-soft:#272320;
+    --plaster:#e9e3d6;
+    --plaster-2:#e1dacb;
+    --paper:#f5f1e8;
+    --brass:#a97c34;
+    --brass-bright:#c69a4e;
+    --muted:#6f675a;
+    --muted-dark:#b6ac9b;
+    --line:rgba(28,26,22,.14);
+    --line-dark:rgba(245,241,232,.15);
+    --font-display:'Bricolage Grotesque','Archivo',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,-apple-system,sans-serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+    --maxw:1140px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--font-body);
+    background:var(--plaster);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  .mono{font-family:var(--font-mono);letter-spacing:.04em}
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--brass);
+    font-weight:500;
+  }
+  .accent{color:var(--brass)}
+
+  /* ---------- spirit-level signature rule ---------- */
+  .levelrule{
+    display:flex;align-items:center;gap:14px;width:100%;
+  }
+  .levelrule .seg{
+    flex:1;height:1px;position:relative;
+    background:var(--line);
+  }
+  .levelrule .seg::before,
+  .levelrule .seg::after{
+    content:"";position:absolute;top:-3px;width:1px;height:7px;background:var(--line);
+  }
+  .levelrule .seg::before{left:0}
+  .levelrule .seg::after{right:0}
+  .levelrule .vial{
+    flex:0 0 auto;width:74px;height:18px;border:1px solid var(--brass);
+    border-radius:10px;position:relative;display:flex;align-items:center;justify-content:center;
+  }
+  .levelrule .vial span{
+    position:absolute;width:1px;height:10px;background:var(--brass);opacity:.55;
+  }
+  .levelrule .vial span:nth-child(1){left:27px}
+  .levelrule .vial span:nth-child(2){right:27px}
+  .levelrule .vial::after{
+    content:"";width:11px;height:11px;border-radius:50%;
+    background:var(--brass);opacity:.85;
+  }
+  .levelrule.on-dark .seg,
+  .levelrule.on-dark .seg::before,
+  .levelrule.on-dark .seg::after{background:var(--line-dark)}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--font-mono);font-size:.82rem;font-weight:500;letter-spacing:.06em;
+    text-transform:uppercase;padding:15px 26px;border-radius:2px;
+    transition:transform .18s ease,background .18s ease,color .18s ease,border-color .18s ease;
+    border:1px solid transparent;cursor:pointer;
+  }
+  .btn-primary{background:var(--brass);color:var(--paper)}
+  .btn-primary:hover{background:var(--brass-bright);transform:translateY(-2px)}
+  .btn-ghost{border-color:var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .btn-ghost.on-dark{border-color:var(--line-dark);color:var(--paper)}
+  .btn-ghost.on-dark:hover{border-color:var(--paper)}
+  .btn .arrow{font-family:var(--font-body)}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(233,227,214,.82);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .row{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .wordmark{
+    font-family:var(--font-display);font-weight:700;font-size:1.02rem;letter-spacing:-.01em;
+    display:flex;align-items:center;gap:10px;
+  }
+  .wordmark .tick{width:9px;height:9px;border:1.5px solid var(--brass);border-radius:50%;flex:0 0 auto}
+  .topbar .links{display:flex;align-items:center;gap:26px}
+  .topbar .links a.nav{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .topbar .links a.nav:hover{color:var(--ink)}
+  .topbar .btn{padding:10px 18px}
+  @media(max-width:760px){ .topbar .links a.nav{display:none} }
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--ink);color:var(--paper);padding:96px 0 76px;position:relative}
+  .hero .eyebrow{color:var(--brass-bright)}
+  .hero h1{
+    font-family:var(--font-display);font-weight:800;
+    font-size:clamp(2.6rem,7vw,5.1rem);line-height:.98;letter-spacing:-.02em;
+    margin:20px 0 22px;max-width:14ch;
+  }
+  .hero p.lede{font-size:clamp(1.02rem,1.7vw,1.22rem);color:#d9d2c4;max-width:50ch;margin-bottom:34px}
+  .hero .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:54px}
+  .spec{
+    display:flex;flex-wrap:wrap;gap:10px 22px;padding-top:26px;border-top:1px solid var(--line-dark);
+    font-family:var(--font-mono);font-size:.78rem;letter-spacing:.05em;color:var(--muted-dark);
+  }
+  .spec b{color:var(--paper);font-weight:600}
+  .spec .dot{color:var(--brass)}
+
+  /* ---------- section scaffold ---------- */
+  .section{padding:84px 0}
+  .section.dark{background:var(--ink-soft);color:var(--paper)}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:40px;flex-wrap:wrap}
+  .sec-head .num{font-family:var(--font-mono);font-size:.78rem;color:var(--brass);letter-spacing:.1em}
+  .sec-head h2{font-family:var(--font-display);font-weight:700;font-size:clamp(1.8rem,4vw,2.9rem);line-height:1.02;letter-spacing:-.015em}
+  .sec-head p.kicker{color:var(--muted);max-width:40ch;margin-left:auto;font-size:.98rem}
+  .section.dark .sec-head p.kicker{color:var(--muted-dark)}
+
+  /* ---------- services ---------- */
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .svc{background:var(--plaster);padding:34px 28px;display:flex;flex-direction:column;gap:14px;transition:background .2s ease}
+  .svc:hover{background:var(--plaster-2)}
+  .svc .stag{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.12em;color:var(--brass);text-transform:uppercase}
+  .svc h3{font-family:var(--font-display);font-weight:600;font-size:1.5rem;line-height:1.05}
+  .svc p{color:var(--muted);font-size:.97rem}
+  .svc .meta{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);font-family:var(--font-mono);font-size:.74rem;letter-spacing:.04em;color:var(--ink)}
+  @media(max-width:820px){.svc-grid{grid-template-columns:1fr}}
+
+  /* ---------- the work / portfolio ---------- */
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .frame{
+    position:relative;aspect-ratio:4/3;background:var(--plaster-2);
+    border:1px solid var(--line);overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .frame img{width:100%;height:100%;object-fit:cover}
+  .frame .ph{
+    text-align:center;padding:20px;font-family:var(--font-mono);font-size:.72rem;
+    letter-spacing:.06em;color:var(--muted);line-height:1.7;text-transform:uppercase;
+  }
+  .frame .ph b{display:block;color:var(--brass);font-size:.8rem;margin-bottom:6px}
+  .frame .corner{position:absolute;width:14px;height:14px;border:1px solid var(--brass);opacity:.6}
+  .frame .corner.tl{top:8px;left:8px;border-right:0;border-bottom:0}
+  .frame .corner.br{bottom:8px;right:8px;border-left:0;border-top:0}
+  .cap{margin-top:9px;font-family:var(--font-mono);font-size:.74rem;color:var(--muted);letter-spacing:.03em}
+  @media(max-width:820px){.work-grid{grid-template-columns:1fr 1fr;gap:12px}}
+  @media(max-width:520px){.work-grid{grid-template-columns:1fr}}
+
+  /* ---------- proof / testimonials ---------- */
+  .quote-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .quote{
+    background:var(--ink);border:1px solid var(--line-dark);padding:30px 28px;
+    display:flex;flex-direction:column;gap:16px;border-radius:2px;
+  }
+  .quote .stars{color:var(--brass-bright);letter-spacing:.18em;font-size:.95rem}
+  .quote p{font-size:1.04rem;line-height:1.5;color:var(--paper)}
+  .quote .by{font-family:var(--font-mono);font-size:.76rem;color:var(--muted-dark);letter-spacing:.04em;margin-top:auto}
+  .quote.slot p{color:var(--muted-dark);font-style:italic}
+  @media(max-width:760px){.quote-grid{grid-template-columns:1fr}}
+
+  .badges{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .badge{
+    display:flex;align-items:center;gap:9px;
+    border:1px solid var(--line-dark);padding:11px 16px;border-radius:2px;
+    font-family:var(--font-mono);font-size:.74rem;letter-spacing:.04em;color:var(--paper);
+  }
+  .badge .b-dot{width:7px;height:7px;border-radius:50%;background:var(--brass);flex:0 0 auto}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:46px;align-items:center}
+  .about-photo{
+    aspect-ratio:4/5;background:var(--plaster-2);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+  }
+  .about-photo img{width:100%;height:100%;object-fit:cover}
+  .about-photo .ph{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);text-align:center;padding:20px;letter-spacing:.06em;text-transform:uppercase;line-height:1.8}
+  .about-photo .ph b{display:block;color:var(--brass);margin-bottom:6px}
+  .about-text h2{font-family:var(--font-display);font-weight:700;font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.05;letter-spacing:-.015em;margin-bottom:20px}
+  .about-text p{color:var(--muted);font-size:1.05rem;margin-bottom:16px;max-width:48ch}
+  .about-text p strong{color:var(--ink);font-weight:600}
+  @media(max-width:820px){.about-grid{grid-template-columns:1fr;gap:30px}.about-photo{max-width:320px}}
+
+  /* ---------- book band ---------- */
+  .book{background:var(--ink);color:var(--paper);padding:84px 0;text-align:center}
+  .book .eyebrow{color:var(--brass-bright)}
+  .book h2{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);line-height:1.02;letter-spacing:-.02em;margin:18px auto 18px;max-width:18ch}
+  .book p.sub{color:#d9d2c4;max-width:46ch;margin:0 auto 32px;font-size:1.06rem}
+  .book .cta-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:30px}
+  .book .contact{font-family:var(--font-mono);font-size:.82rem;letter-spacing:.04em;color:var(--muted-dark);display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center}
+  .book .contact a{color:var(--paper);border-bottom:1px solid var(--brass);padding-bottom:1px}
+  .book .contact a:hover{color:var(--brass-bright)}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink-soft);color:var(--muted-dark);padding:34px 0;border-top:1px solid var(--line-dark)}
+  footer .row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  footer .wordmark{color:var(--paper);font-size:.95rem}
+  footer .fmono{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.04em}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+    .btn:hover,.btn-primary:hover,.btn-ghost:hover{transform:none}
+  }
+
+  :focus-visible{outline:2px solid var(--brass-bright);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<!-- ===================== TOP BAR ===================== -->
+<header class="topbar">
+  <div class="wrap row">
+    <a class="wordmark" href="#top"><span class="tick"></span>Jonathan&rsquo;s Handyman Services</a>
+    <nav class="links">
+      <a class="nav" href="#services">Services</a>
+      <a class="nav" href="#work">The Work</a>
+      <a class="nav" href="#proof">Reviews</a>
+      <a class="btn btn-primary" href="{{BOOKING_LINK}}">Book a time</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow">Serving LA &amp; OC &middot; Since 2018</span>
+    <h1>Mounted&nbsp;level. Built&nbsp;right. <span class="accent">The first time.</span></h1>
+    <p class="lede">Art, TVs, mirrors, shelves, and furniture, installed by a meticulous pro who brings every tool (yes, the vacuum too). Drywall, brick, concrete, plaster, all handled, all left spotless.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="{{BOOKING_LINK}}">Book a time <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-ghost on-dark" href="#work">See the work</a>
+    </div>
+    <div class="spec">
+      <span><b>876</b> jobs completed</span><span class="dot">&middot;</span>
+      <span><b>5.0&#9733;</b> from 427 reviews</span><span class="dot">&middot;</span>
+      <span><b>ID verified</b></span><span class="dot">&middot;</span>
+      <span>Bilingual <b>EN/ES</b></span><span class="dot">&middot;</span>
+      <span>1.5 hr minimum</span>
+    </div>
+  </div>
+</section>
+
+<!-- level rule -->
+<div class="wrap" style="padding-top:0">
+  <div class="levelrule" style="margin:0 0 0 0;transform:translateY(-1px)" aria-hidden="true">
+    <span class="seg"></span><span class="vial"><span></span><span></span></span><span class="seg"></span>
+  </div>
+</div>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">01</span>
+      <h2>What I do</h2>
+      <p class="kicker">Two specialties I&rsquo;ve done a thousand-plus times, plus the finish work most handymen skip.</p>
+    </div>
+    <div class="svc-grid reveal">
+      <article class="svc">
+        <span class="stag">Specialty</span>
+        <h3>General Mounting</h3>
+        <p>Art, TVs, mirrors, floating shelves, and wall units. Laser-leveled, premium anchors, cables hidden, flush every time, on drywall, brick, or concrete.</p>
+        <div class="meta">229 reviews &middot; 5.0&#9733;</div>
+      </article>
+      <article class="svc">
+        <span class="stag">Specialty</span>
+        <h3>Furniture Assembly</h3>
+        <p>IKEA, Wayfair, or custom. Built fast and built solid, no leftover screws, packaging hauled out, your space left cleaner than I found it.</p>
+        <div class="meta">148 reviews &middot; 5.0&#9733;</div>
+      </article>
+      <article class="svc">
+        <span class="stag">Finish work</span>
+        <h3>Repairs &amp; Plaster</h3>
+        <p>Drywall patching, secure anchoring, and high-end Venetian &amp; tadelakt plaster. Walls and surfaces that look like a designer signed off on them.</p>
+        <div class="meta">By request &middot; LA &amp; OC</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE WORK ===================== -->
+<section class="section" id="work" style="background:var(--plaster-2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">02</span>
+      <h2>The work</h2>
+      <p class="kicker">Swap these frames for your real before/afters. Caption each one like a job spec.</p>
+    </div>
+    <div class="work-grid reveal">
+      <!-- Repeat a .work-item per photo. Drop your image in the <img> (uncomment), keep the caption real. -->
+      <div class="work-item">
+        <div class="frame">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <!-- <img src="photos/job-01.jpg" alt="65-inch TV, floating mount"> -->
+          <span class="ph"><b>Add photo</b>before / after</span>
+        </div>
+        <div class="cap">65&quot; TV &middot; floating, no visible cables &middot; Santa Monica</div>
+      </div>
+      <div class="work-item">
+        <div class="frame">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <span class="ph"><b>Add photo</b>before / after</span>
+        </div>
+        <div class="cap">Gallery wall &middot; 9 frames, laser-aligned &middot; Venice</div>
+      </div>
+      <div class="work-item">
+        <div class="frame">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <span class="ph"><b>Add photo</b>before / after</span>
+        </div>
+        <div class="cap">Floating shelves &middot; concealed brackets &middot; DTLA</div>
+      </div>
+      <div class="work-item">
+        <div class="frame">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <span class="ph"><b>Add photo</b>before / after</span>
+        </div>
+        <div class="cap">Full furniture build-out &middot; one-bedroom &middot; Culver City</div>
+      </div>
+      <div class="work-item">
+        <div class="frame">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <span class="ph"><b>Add photo</b>before / after</span>
+        </div>
+        <div class="cap">Heavy mirror &middot; mounted on brick &middot; Pasadena</div>
+      </div>
+      <div class="work-item">
+        <div class="frame">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <span class="ph"><b>Add photo</b>before / after</span>
+        </div>
+        <div class="cap">Tadelakt accent wall &middot; smooth finish &middot; Malibu</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROOF ===================== -->
+<section class="section dark" id="proof">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">03</span>
+      <h2>What clients say</h2>
+      <p class="kicker">Replace each card with a real review you&rsquo;ve earned. First name and last initial is all you need.</p>
+    </div>
+    <div class="quote-grid reveal">
+      <!-- PASTE REAL REVIEWS. Keep them genuine — these four are empty slots, not sample quotes. -->
+      <figure class="quote slot">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>[ Paste a real 5-star review here. ]</p>
+        <figcaption class="by">— First name L. &middot; Neighborhood</figcaption>
+      </figure>
+      <figure class="quote slot">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>[ Paste a real 5-star review here. ]</p>
+        <figcaption class="by">— First name L. &middot; Neighborhood</figcaption>
+      </figure>
+      <figure class="quote slot">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>[ Paste a real 5-star review here. ]</p>
+        <figcaption class="by">— First name L. &middot; Neighborhood</figcaption>
+      </figure>
+      <figure class="quote slot">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>[ Paste a real 5-star review here. ]</p>
+        <figcaption class="by">— First name L. &middot; Neighborhood</figcaption>
+      </figure>
+    </div>
+
+    <div class="badges reveal">
+      <span class="badge"><span class="b-dot"></span>ID Verified</span>
+      <!-- Only include the next badge if you actually carry liability insurance:
+      <span class="badge"><span class="b-dot"></span>Licensed &amp; Insured</span>
+      -->
+      <span class="badge"><span class="b-dot"></span>Bilingual EN / ES</span>
+      <span class="badge"><span class="b-dot"></span>All tools provided</span>
+      <span class="badge"><span class="b-dot"></span>Satisfaction guaranteed &mdash; I fix it free</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-photo reveal">
+        <!-- <img src="photos/headshot.jpg" alt="Jonathan"> -->
+        <span class="ph"><b>Add headshot</b>4 : 5 portrait</span>
+      </div>
+      <div class="about-text reveal">
+        <span class="eyebrow">The person behind the work</span>
+        <h2 style="margin-top:14px">A trainer&rsquo;s eye for form, a craftsman&rsquo;s standard for finish.</h2>
+        <p>UC Berkeley&ndash;educated and built on a personal trainer&rsquo;s obsession with doing things right, I treat every mount and build like it has to pass inspection. Level, plumb, square, no shortcuts.</p>
+        <p><strong>Eight years, 1,100+ clients, and a 5.0 rating across 427 reviews later, the standard hasn&rsquo;t moved:</strong> done right, the first time, and your space left spotless when I go.</p>
+        <p>Based in Santa Monica, working across Los Angeles &amp; Orange County.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BOOK ===================== -->
+<section class="book" id="book">
+  <div class="wrap">
+    <span class="eyebrow">Ready when you are</span>
+    <h2>Tap the link, pick a time, I&rsquo;ll handle the rest.</h2>
+    <p class="sub">Most jobs booked same week. Tell me what you need and I&rsquo;ll bring the tools, the anchors, and the vacuum.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="{{BOOKING_LINK}}">Book a time <span class="arrow">&rarr;</span></a>
+      <a class="btn btn-ghost on-dark" href="tel:{{PHONE_DIGITS}}">Call {{PHONE}}</a>
+    </div>
+    <div class="contact">
+      <span>Text or call: <a href="tel:{{PHONE_DIGITS}}">{{PHONE}}</a></span>
+      <span>Email: <a href="mailto:{{EMAIL}}">{{EMAIL}}</a></span>
+      <span>Instagram: <a href="{{INSTAGRAM_URL}}">{{INSTAGRAM_HANDLE}}</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap row">
+    <span class="wordmark"><span class="tick" style="border-color:var(--brass)"></span>Jonathan&rsquo;s Handyman Services</span>
+    <span class="fmono">Los Angeles &amp; Orange County &middot; Mounting &amp; Assembly</span>
+    <span class="fmono">&copy; <span id="yr"></span></span>
+  </div>
+</footer>
+
+<script>
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // scroll reveal (respects reduced motion)
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.reveal');
+    if(reduce || !('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
+    items.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>

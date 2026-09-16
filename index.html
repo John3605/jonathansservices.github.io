@@ -18,9 +18,11 @@ find-and-replace these placeholders:
     {{RATE}}             -> your hourly rate (e.g. 99)
 
   TO DO:
+   - Swap the hero photo for your best install (the one you're proudest of).
    - Swap the photo frames in "The Work" for your real before/afters.
    - Replace the testimonial slots with your archived 5-star reviews
-     (keep them REAL — first name + last initial is plenty).
+     (keep them REAL — first name + last initial is plenty), and drop
+     each reviewer's profile picture into their carousel card.
    - Add your headshot in the About section.
    - The "Insured" badge is commented out. Only switch it on if you
      actually carry liability insurance.
@@ -158,6 +160,27 @@ find-and-replace these placeholders:
   .spec b{color:var(--paper);font-weight:600}
   .spec .dot{color:var(--brass)}
 
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero-photo{position:relative}
+  .hero-frame{aspect-ratio:4/5}
+  .hero-stat{
+    position:absolute;left:-18px;bottom:-18px;
+    background:var(--brass);color:var(--ink);
+    padding:18px 22px;border-radius:2px;
+    box-shadow:0 14px 30px rgba(0,0,0,.3);
+    display:flex;flex-direction:column;gap:2px;
+  }
+  .hero-stat-num{font-family:var(--font-display);font-weight:800;font-size:1.85rem;line-height:1}
+  .hero-stat-label{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;line-height:1.3}
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:36px}
+    .hero-photo{max-width:420px}
+  }
+  @media(max-width:520px){
+    .hero-stat{left:12px;bottom:-16px;padding:13px 18px}
+    .hero-stat-num{font-size:1.5rem}
+  }
+
   /* ---------- section scaffold ---------- */
   .section{padding:84px 0}
   .section.dark{background:var(--ink-soft);color:var(--paper)}
@@ -197,17 +220,34 @@ find-and-replace these placeholders:
   @media(max-width:820px){.work-grid{grid-template-columns:1fr 1fr;gap:12px}}
   @media(max-width:520px){.work-grid{grid-template-columns:1fr}}
 
-  /* ---------- proof / testimonials ---------- */
-  .quote-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-  .quote{
-    background:var(--ink);border:1px solid var(--line-dark);padding:30px 28px;
-    display:flex;flex-direction:column;gap:16px;border-radius:2px;
+  /* ---------- proof / testimonials carousel ---------- */
+  .carousel{
+    overflow:hidden;position:relative;
+    -webkit-mask-image:linear-gradient(to right,transparent,black 48px,black calc(100% - 48px),transparent);
+            mask-image:linear-gradient(to right,transparent,black 48px,black calc(100% - 48px),transparent);
   }
-  .quote .stars{color:var(--brass-bright);letter-spacing:.18em;font-size:.95rem}
-  .quote p{font-size:1.04rem;line-height:1.5;color:var(--paper)}
-  .quote .by{font-family:var(--font-mono);font-size:.76rem;color:var(--muted-dark);letter-spacing:.04em;margin-top:auto}
-  .quote.slot p{color:var(--muted-dark);font-style:italic}
-  @media(max-width:760px){.quote-grid{grid-template-columns:1fr}}
+  .carousel-track{display:flex;gap:20px;width:max-content;animation:marquee 42s linear infinite}
+  .carousel-set{display:flex;gap:20px}
+  .carousel:hover .carousel-track,
+  .carousel:focus-within .carousel-track{animation-play-state:paused}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .rcard{
+    flex:0 0 320px;background:var(--ink);border:1px solid var(--line-dark);border-radius:2px;
+    padding:26px 24px;display:flex;flex-direction:column;gap:14px;
+  }
+  .rcard .stars{color:var(--brass-bright);letter-spacing:.18em;font-size:.88rem}
+  .rcard p{font-size:.99rem;line-height:1.55;color:var(--muted-dark);font-style:italic}
+  .rc-head{display:flex;align-items:center;gap:12px}
+  .avatar{
+    width:46px;height:46px;border-radius:50%;flex:0 0 auto;overflow:hidden;
+    background:var(--ink-soft);border:1px solid var(--line-dark);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .avatar img{width:100%;height:100%;object-fit:cover}
+  .avatar-ph{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.02em;color:var(--muted-dark);text-transform:uppercase}
+  .rc-id{display:flex;flex-direction:column;gap:5px}
+  .rc-name{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.03em;color:var(--paper)}
+  @media(max-width:520px){.rcard{flex-basis:270px;padding:22px 20px}}
 
   .badges{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
   .badge{
@@ -247,19 +287,43 @@ find-and-replace these placeholders:
   footer .wordmark{color:var(--paper);font-size:.95rem}
   footer .fmono{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.04em}
 
+  /* ---------- sticky availability button ---------- */
+  .sticky-cta{
+    position:fixed;right:22px;bottom:22px;z-index:60;
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--brass);color:var(--paper);
+    font-family:var(--font-mono);font-weight:600;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;
+    padding:15px 22px;border-radius:999px;
+    box-shadow:0 14px 30px rgba(0,0,0,.32);
+    transition:transform .18s ease,background .18s ease;
+  }
+  .sticky-cta:hover{background:var(--brass-bright);transform:translateY(-2px)}
+  .sticky-cta .dot{width:8px;height:8px;border-radius:50%;background:var(--paper);flex:0 0 auto;animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  @media(max-width:560px){
+    .sticky-cta{right:14px;bottom:14px;padding:13px 18px;font-size:.7rem;gap:8px}
+  }
+
   /* ---------- reveal ---------- */
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
   .reveal.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){
     .reveal{opacity:1;transform:none;transition:none}
     html{scroll-behavior:auto}
-    .btn:hover,.btn-primary:hover,.btn-ghost:hover{transform:none}
+    .btn:hover,.btn-primary:hover,.btn-ghost:hover,.sticky-cta:hover{transform:none}
+    .carousel-track{animation:none}
+    .sticky-cta .dot{animation:none}
   }
 
   :focus-visible{outline:2px solid var(--brass-bright);outline-offset:3px}
 </style>
 </head>
 <body>
+
+<!-- ===================== STICKY AVAILABILITY BUTTON ===================== -->
+<a class="sticky-cta" href="{{BOOKING_LINK}}">
+  <span class="dot"></span>Check Availability!
+</a>
 
 <!-- ===================== TOP BAR ===================== -->
 <header class="topbar">
@@ -276,19 +340,32 @@ find-and-replace these placeholders:
 
 <!-- ===================== HERO ===================== -->
 <section class="hero" id="top">
-  <div class="wrap">
-    <span class="eyebrow">Serving LA &amp; OC &middot; Since 2018</span>
-    <h1>Mounted&nbsp;level. Built&nbsp;right. <span class="accent">The first time.</span></h1>
-    <p class="lede">Art, TVs, mirrors, shelves, and furniture, installed by a meticulous pro who brings every tool (yes, the vacuum too). Drywall, brick, concrete, plaster, all handled, all left spotless.</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="{{BOOKING_LINK}}">Book a time <span class="arrow">&rarr;</span></a>
-      <a class="btn btn-ghost on-dark" href="#work">See the work</a>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Serving LA &amp; OC &middot; Since 2018</span>
+      <h1>Mounted&nbsp;level. Built&nbsp;right. <span class="accent">The first time.</span></h1>
+      <p class="lede">Art, TVs, mirrors, shelves, and furniture, installed by a meticulous pro who brings every tool (yes, the vacuum too). Drywall, brick, concrete, plaster, all handled, all left spotless.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="{{BOOKING_LINK}}">Book a time <span class="arrow">&rarr;</span></a>
+        <a class="btn btn-ghost on-dark" href="#proof">Read what people have to say</a>
+      </div>
+      <div class="spec">
+        <span><b>1,200+</b> projects since 2018</span><span class="dot">&middot;</span>
+        <span><b>5.0&#9733;</b> from 427 reviews</span><span class="dot">&middot;</span>
+        <span><b>ID verified</b></span><span class="dot">&middot;</span>
+        <span>Bilingual <b>EN/ES</b></span>
+      </div>
     </div>
-    <div class="spec">
-      <span><b>1076</b> jobs completed</span><span class="dot">&middot;</span>
-      <span><b>5.0&#9733;</b> from 427 reviews</span><span class="dot">&middot;</span>
-      <span><b>ID verified</b></span><span class="dot">&middot;</span>
-      <span>Bilingual <b>EN/ES</b></span><span class="dot">&middot;</span>
+    <div class="hero-photo reveal">
+      <div class="frame hero-frame">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <!-- <img src="photos/best-install.jpg" alt="Jonathan's favorite install"> -->
+        <span class="ph"><b>Add your best install</b>the one job you&rsquo;re proudest of</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">1,200+</span>
+        <span class="hero-stat-label">Projects<br>since 2018</span>
+      </div>
     </div>
   </div>
 </section>
@@ -394,30 +471,102 @@ find-and-replace these placeholders:
     <div class="sec-head reveal">
       <span class="num">03</span>
       <h2>What clients say</h2>
-      <p class="kicker">Replace each card with a real review you&rsquo;ve earned. First name and last initial is all you need.</p>
+      <p class="kicker">A running reel of your favorite 5-star reviews. Replace each slot with a real quote and that client&rsquo;s photo.</p>
     </div>
-    <div class="quote-grid reveal">
-      <!-- PASTE REAL REVIEWS. Keep them genuine — these four are empty slots, not sample quotes. -->
-      <figure class="quote slot">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>[ Paste a real 5-star review here. ]</p>
-        <figcaption class="by">— First name L. &middot; Neighborhood</figcaption>
-      </figure>
-      <figure class="quote slot">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>[ Paste a real 5-star review here. ]</p>
-        <figcaption class="by">— First name L. &middot; Neighborhood</figcaption>
-      </figure>
-      <figure class="quote slot">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>[ Paste a real 5-star review here. ]</p>
-        <figcaption class="by">— First name L. &middot; Neighborhood</figcaption>
-      </figure>
-      <figure class="quote slot">
-        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>[ Paste a real 5-star review here. ]</p>
-        <figcaption class="by">— First name L. &middot; Neighborhood</figcaption>
-      </figure>
+    <!-- PASTE REAL REVIEWS. Keep them genuine — these are empty slots, not sample quotes.
+         The card set below is intentionally duplicated once (aria-hidden) so the
+         carousel loops seamlessly — edit BOTH copies when you swap in real reviews. -->
+    <div class="carousel reveal" role="region" aria-label="Client review carousel">
+      <div class="carousel-track">
+        <div class="carousel-set">
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-01.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Santa Monica</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-02.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Venice</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-03.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; DTLA</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-04.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Culver City</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-05.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Pasadena</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-06.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Malibu</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+        </div>
+        <div class="carousel-set" aria-hidden="true">
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Santa Monica</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Venice</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; DTLA</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Culver City</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Pasadena</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Malibu</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+        </div>
+      </div>
     </div>
 
     <div class="badges reveal">
@@ -444,7 +593,7 @@ find-and-replace these placeholders:
         <span class="eyebrow">The person behind the work</span>
         <h2 style="margin-top:14px">A trainer&rsquo;s eye for form, a craftsman&rsquo;s standard for finish.</h2>
         <p>UC Berkeley&ndash;educated and built on a personal trainer&rsquo;s obsession with doing things right, I treat every mount and build like it has to pass inspection. Level, plumb, square, no shortcuts.</p>
-        <p><strong>Eight years, 1,100+ clients, and a 5.0 rating across 427 reviews later, the standard hasn&rsquo;t moved:</strong> done right, the first time, and your space left spotless when I go.</p>
+        <p><strong>Eight years, 1,200+ projects, and a 5.0 rating across 427 reviews later, the standard hasn&rsquo;t moved:</strong> done right, the first time, and your space left spotless when I go.</p>
         <p>Based in Santa Monica, working across Los Angeles &amp; Orange County.</p>
       </div>
     </div>

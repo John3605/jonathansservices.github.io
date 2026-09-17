@@ -127,21 +127,33 @@ find-and-replace these placeholders:
 
   /* ---------- top bar ---------- */
   .topbar{
-    position:sticky;top:0;z-index:50;
     background:rgba(233,227,214,.82);backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
-  .topbar .row{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .topbar .row{display:flex;align-items:center;justify-content:space-between;min-height:62px;flex-wrap:nowrap}
   .wordmark{
     font-family:var(--font-display);font-weight:700;font-size:1.02rem;letter-spacing:-.01em;
-    display:flex;align-items:center;gap:10px;
+    display:flex;align-items:center;gap:10px;white-space:nowrap;
   }
   .wordmark .tick{width:9px;height:9px;border:1.5px solid var(--brass);border-radius:50%;flex:0 0 auto}
-  .topbar .links{display:flex;align-items:center;gap:26px}
+  .wordmark-avatar{
+    width:34px;height:34px;border-radius:50%;flex:0 0 auto;overflow:hidden;
+    background:var(--ink-soft);border:1.5px solid var(--brass);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .wordmark-avatar img{width:100%;height:100%;object-fit:cover}
+  .wordmark-avatar-ph{font-family:var(--font-mono);font-size:.6rem;font-weight:600;letter-spacing:.02em;color:var(--brass)}
+  .topbar .links{display:flex;align-items:center;gap:26px;min-width:0}
   .topbar .links a.nav{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
   .topbar .links a.nav:hover{color:var(--ink)}
   .topbar .btn{padding:10px 18px}
   @media(max-width:760px){ .topbar .links a.nav{display:none} }
+  @media(max-width:520px){
+    .topbar .row{padding:0 16px}
+    .wordmark{font-size:.82rem;gap:7px}
+    .wordmark-avatar{width:26px;height:26px}
+    .topbar .btn{font-size:.6rem;padding:8px 11px;letter-spacing:.02em}
+  }
 
   /* ---------- hero ---------- */
   .hero{background:var(--ink);color:var(--paper);padding:96px 0 76px;position:relative}
@@ -177,6 +189,8 @@ find-and-replace these placeholders:
     .hero-photo{max-width:420px}
   }
   @media(max-width:520px){
+    .hero{padding-top:40px}
+    .hero-photo{margin-left:auto;margin-right:auto}
     .hero-stat{left:12px;bottom:-16px;padding:13px 18px}
     .hero-stat-num{font-size:1.5rem}
   }
@@ -328,12 +342,18 @@ find-and-replace these placeholders:
 <!-- ===================== TOP BAR ===================== -->
 <header class="topbar">
   <div class="wrap row">
-    <a class="wordmark" href="#top"><span class="tick"></span>Jonathan&rsquo;s Services</a>
+    <a class="wordmark" href="#top">
+      <span class="wordmark-avatar">
+        <!-- <img src="photos/jonathan-avatar.jpg" alt="Jonathan"> -->
+        <span class="wordmark-avatar-ph">JC</span>
+      </span>
+      Jonathan&rsquo;s Services
+    </a>
     <nav class="links">
       <a class="nav" href="#services">Services</a>
       <a class="nav" href="#work">The Work</a>
       <a class="nav" href="#proof">Reviews</a>
-      <a class="btn btn-primary" href="{{BOOKING_LINK}}">Book a time</a>
+      <a class="btn btn-primary" href="{{BOOKING_LINK}}">Check availability</a>
     </nav>
   </div>
 </header>
@@ -342,18 +362,16 @@ find-and-replace these placeholders:
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">Serving LA &amp; OC &middot; Since 2018</span>
-      <h1>Mounted&nbsp;level. Built&nbsp;right. <span class="accent">The first time.</span></h1>
+      <span class="eyebrow">1,200+ projects since 2018 &middot; 420+ 5&#9733; reviews</span>
+      <h1>Mounted level. Built right. <span class="accent">The first time.</span></h1>
       <p class="lede">Art, TVs, mirrors, shelves, and furniture, installed by a meticulous pro who brings every tool (yes, the vacuum too). Drywall, brick, concrete, plaster, all handled, all left spotless.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="{{BOOKING_LINK}}">Book a time <span class="arrow">&rarr;</span></a>
-        <a class="btn btn-ghost on-dark" href="#proof">Read what people have to say</a>
+        <a class="btn btn-ghost on-dark" href="https://www.taskrabbit.com/profile/jonathan-c--208" target="_blank" rel="noopener noreferrer">Read what people have to say</a>
       </div>
       <div class="spec">
-        <span><b>1,200+</b> projects since 2018</span><span class="dot">&middot;</span>
-        <span><b>5.0&#9733;</b> from 427 reviews</span><span class="dot">&middot;</span>
-        <span><b>ID verified</b></span><span class="dot">&middot;</span>
-        <span>Bilingual <b>EN/ES</b></span>
+        <span>Bilingual <b>EN/ES</b></span><span class="dot">&middot;</span>
+        <span><b>Background/ID verified</b></span>
       </div>
     </div>
     <div class="hero-photo reveal">
@@ -370,106 +388,11 @@ find-and-replace these placeholders:
   </div>
 </section>
 
-<!-- level rule -->
-<div class="wrap" style="padding-top:0">
-  <div class="levelrule" style="margin:0 0 0 0;transform:translateY(-1px)" aria-hidden="true">
-    <span class="seg"></span><span class="vial"><span></span><span></span></span><span class="seg"></span>
-  </div>
-</div>
-
-<!-- ===================== SERVICES ===================== -->
-<section class="section" id="services">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="num">01</span>
-      <h2>What I do</h2>
-      <p class="kicker">Two specialties I&rsquo;ve done a thousand-plus times, plus the finish work most handymen skip.</p>
-    </div>
-    <div class="svc-grid reveal">
-      <article class="svc">
-        <span class="stag">Specialty</span>
-        <h3>General Mounting</h3>
-        <p>Art, TVs, mirrors, floating shelves, and wall units. Laser-leveled, premium anchors, cables hidden, flush every time, on drywall, brick, or concrete.</p>
-        <div class="meta">229 reviews &middot; 5.0&#9733;</div>
-      </article>
-      <article class="svc">
-        <span class="stag">Specialty</span>
-        <h3>Furniture Assembly</h3>
-        <p>IKEA, Wayfair, or custom. Built fast and built solid, no leftover screws, packaging hauled out, your space left cleaner than I found it.</p>
-        <div class="meta">148 reviews &middot; 5.0&#9733;</div>
-      </article>
-      <article class="svc">
-        <span class="stag">Finish work</span>
-        <h3>Repairs &amp; Plaster</h3>
-        <p>Drywall patching, secure anchoring, and high-end Venetian &amp; tadelakt plaster. Walls and surfaces that look like a designer signed off on them.</p>
-        <div class="meta">By request &middot; LA &amp; OC</div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== THE WORK ===================== -->
-<section class="section" id="work" style="background:var(--plaster-2)">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="num">02</span>
-      <h2>The work</h2>
-      <p class="kicker">Swap these frames for your real before/afters. Caption each one like a job spec.</p>
-    </div>
-    <div class="work-grid reveal">
-      <!-- Repeat a .work-item per photo. Drop your image in the <img> (uncomment), keep the caption real. -->
-      <div class="work-item">
-        <div class="frame">
-          <span class="corner tl"></span><span class="corner br"></span>
-          <!-- <img src="photos/job-01.jpg" alt="65-inch TV, floating mount"> -->
-          <span class="ph"><b>Add photo</b>before / after</span>
-        </div>
-        <div class="cap">65&quot; TV &middot; floating, no visible cables &middot; Santa Monica</div>
-      </div>
-      <div class="work-item">
-        <div class="frame">
-          <span class="corner tl"></span><span class="corner br"></span>
-          <span class="ph"><b>Add photo</b>before / after</span>
-        </div>
-        <div class="cap">Gallery wall &middot; 9 frames, laser-aligned &middot; Venice</div>
-      </div>
-      <div class="work-item">
-        <div class="frame">
-          <span class="corner tl"></span><span class="corner br"></span>
-          <span class="ph"><b>Add photo</b>before / after</span>
-        </div>
-        <div class="cap">Floating shelves &middot; concealed brackets &middot; DTLA</div>
-      </div>
-      <div class="work-item">
-        <div class="frame">
-          <span class="corner tl"></span><span class="corner br"></span>
-          <span class="ph"><b>Add photo</b>before / after</span>
-        </div>
-        <div class="cap">Full furniture build-out &middot; one-bedroom &middot; Culver City</div>
-      </div>
-      <div class="work-item">
-        <div class="frame">
-          <span class="corner tl"></span><span class="corner br"></span>
-          <span class="ph"><b>Add photo</b>before / after</span>
-        </div>
-        <div class="cap">Heavy mirror &middot; mounted on brick &middot; Pasadena</div>
-      </div>
-      <div class="work-item">
-        <div class="frame">
-          <span class="corner tl"></span><span class="corner br"></span>
-          <span class="ph"><b>Add photo</b>before / after</span>
-        </div>
-        <div class="cap">Tadelakt accent wall &middot; smooth finish &middot; Malibu</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===================== PROOF ===================== -->
 <section class="section dark" id="proof">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="num">03</span>
+      <span class="num">01</span>
       <h2>What clients say</h2>
       <p class="kicker">A running reel of your favorite 5-star reviews. Replace each slot with a real quote and that client&rsquo;s photo.</p>
     </div>
@@ -577,6 +500,101 @@ find-and-replace these placeholders:
       <span class="badge"><span class="b-dot"></span>Bilingual EN / ES</span>
       <span class="badge"><span class="b-dot"></span>All tools provided</span>
       <span class="badge"><span class="b-dot"></span>Satisfaction guaranteed &mdash; I fix it free</span>
+    </div>
+  </div>
+</section>
+
+<!-- level rule -->
+<div class="wrap" style="padding-top:0">
+  <div class="levelrule" style="margin:0 0 0 0;transform:translateY(-1px)" aria-hidden="true">
+    <span class="seg"></span><span class="vial"><span></span><span></span></span><span class="seg"></span>
+  </div>
+</div>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">02</span>
+      <h2>What I do</h2>
+      <p class="kicker">Two specialties I&rsquo;ve done a thousand-plus times, plus the finish work most handymen skip.</p>
+    </div>
+    <div class="svc-grid reveal">
+      <article class="svc">
+        <span class="stag">Specialty</span>
+        <h3>General Mounting</h3>
+        <p>Art, TVs, mirrors, floating shelves, and wall units. Laser-leveled, premium anchors, cables hidden, flush every time, on drywall, brick, or concrete.</p>
+        <div class="meta">229 reviews &middot; 5.0&#9733;</div>
+      </article>
+      <article class="svc">
+        <span class="stag">Specialty</span>
+        <h3>Furniture Assembly</h3>
+        <p>IKEA, Wayfair, or custom. Built fast and built solid, no leftover screws, packaging hauled out, your space left cleaner than I found it.</p>
+        <div class="meta">148 reviews &middot; 5.0&#9733;</div>
+      </article>
+      <article class="svc">
+        <span class="stag">Finish work</span>
+        <h3>Repairs &amp; Plaster</h3>
+        <p>Drywall patching, secure anchoring, and high-end Venetian &amp; tadelakt plaster. Walls and surfaces that look like a designer signed off on them.</p>
+        <div class="meta">By request &middot; LA &amp; OC</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE WORK ===================== -->
+<section class="section" id="work" style="background:var(--plaster-2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">03</span>
+      <h2>The work</h2>
+      <p class="kicker">Swap these frames for your real before/afters. Caption each one like a job spec.</p>
+    </div>
+    <div class="work-grid reveal">
+      <!-- Repeat a .work-item per photo. Drop your image in the <img> (uncomment), keep the caption real. -->
+      <div class="work-item">
+        <div class="frame">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <!-- <img src="photos/job-01.jpg" alt="65-inch TV, floating mount"> -->
+          <span class="ph"><b>Add photo</b>before / after</span>
+        </div>
+        <div class="cap">65&quot; TV &middot; floating, no visible cables &middot; Santa Monica</div>
+      </div>
+      <div class="work-item">
+        <div class="frame">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <span class="ph"><b>Add photo</b>before / after</span>
+        </div>
+        <div class="cap">Gallery wall &middot; 9 frames, laser-aligned &middot; Venice</div>
+      </div>
+      <div class="work-item">
+        <div class="frame">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <span class="ph"><b>Add photo</b>before / after</span>
+        </div>
+        <div class="cap">Floating shelves &middot; concealed brackets &middot; DTLA</div>
+      </div>
+      <div class="work-item">
+        <div class="frame">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <span class="ph"><b>Add photo</b>before / after</span>
+        </div>
+        <div class="cap">Full furniture build-out &middot; one-bedroom &middot; Culver City</div>
+      </div>
+      <div class="work-item">
+        <div class="frame">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <span class="ph"><b>Add photo</b>before / after</span>
+        </div>
+        <div class="cap">Heavy mirror &middot; mounted on brick &middot; Pasadena</div>
+      </div>
+      <div class="work-item">
+        <div class="frame">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <span class="ph"><b>Add photo</b>before / after</span>
+        </div>
+        <div class="cap">Tadelakt accent wall &middot; smooth finish &middot; Malibu</div>
+      </div>
     </div>
   </div>
 </section>

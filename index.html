@@ -8,14 +8,8 @@
 
 <!--
 ====================================================================
-find-and-replace these placeholders:
+find-and-replace this placeholder:
     {{BOOKING_LINK}}     -> your Square Appointments / booking URL
-    {{PHONE}}            -> your phone number (e.g. (310) 555-0142)
-    {{PHONE_DIGITS}}     -> same number, digits only (e.g. 3105550142)
-    {{EMAIL}}            -> your email
-    {{INSTAGRAM_URL}}    -> https://instagram.com/yourhandle
-    {{INSTAGRAM_HANDLE}} -> @yourhandle
-    {{RATE}}             -> your hourly rate (e.g. 99)
 
   TO DO:
    - Swap the hero photo for your best install (the one you're proudest of).
@@ -24,8 +18,6 @@ find-and-replace these placeholders:
      (keep them REAL — first name + last initial is plenty), and drop
      each reviewer's profile picture into their carousel card.
    - Add your headshot in the About section.
-   - The "Insured" badge is commented out. Only switch it on if you
-     actually carry liability insurance.
 ====================================================================
 -->
 
@@ -141,7 +133,7 @@ find-and-replace these placeholders:
     background:var(--ink-soft);border:1.5px solid var(--brass);
     display:flex;align-items:center;justify-content:center;
   }
-  .wordmark-avatar img{width:100%;height:100%;object-fit:cover;transform:scale(1.85);object-position:center 40%}
+  .wordmark-avatar img{width:100%;height:100%;object-fit:cover;transform:scale(2.3);object-position:center 42%}
   .wordmark-avatar-ph{font-family:var(--font-mono);font-size:.6rem;font-weight:600;letter-spacing:.02em;color:var(--brass)}
   .topbar .links{display:flex;align-items:center;gap:26px;min-width:0}
   .topbar .links a.nav{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -172,6 +164,7 @@ find-and-replace these placeholders:
   .spec b{color:var(--paper);font-weight:600}
   .spec .dot{color:var(--brass)}
 
+  .hero .wrap{max-width:1450px}
   .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
   .hero-photo{position:relative}
   .hero-frame{aspect-ratio:4/5}
@@ -186,7 +179,7 @@ find-and-replace these placeholders:
   .hero-stat-label{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;line-height:1.3}
   @media(max-width:900px){
     .hero-grid{grid-template-columns:1fr;gap:36px}
-    .hero-photo{max-width:420px}
+    .hero-photo{max-width:525px}
   }
   @media(max-width:520px){
     .hero{padding-top:40px}
@@ -263,14 +256,6 @@ find-and-replace these placeholders:
   .rc-name{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.03em;color:var(--paper)}
   @media(max-width:520px){.rcard{flex-basis:270px;padding:22px 20px}}
 
-  .badges{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
-  .badge{
-    display:flex;align-items:center;gap:9px;
-    border:1px solid var(--line-dark);padding:11px 16px;border-radius:2px;
-    font-family:var(--font-mono);font-size:.74rem;letter-spacing:.04em;color:var(--paper);
-  }
-  .badge .b-dot{width:7px;height:7px;border-radius:50%;background:var(--brass);flex:0 0 auto}
-
   /* ---------- about ---------- */
   .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:46px;align-items:center}
   .about-photo{
@@ -291,9 +276,6 @@ find-and-replace these placeholders:
   .book h2{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);line-height:1.02;letter-spacing:-.02em;margin:18px auto 18px;max-width:18ch}
   .book p.sub{color:#d9d2c4;max-width:46ch;margin:0 auto 32px;font-size:1.06rem}
   .book .cta-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:30px}
-  .book .contact{font-family:var(--font-mono);font-size:.82rem;letter-spacing:.04em;color:var(--muted-dark);display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center}
-  .book .contact a{color:var(--paper);border-bottom:1px solid var(--brass);padding-bottom:1px}
-  .book .contact a:hover{color:var(--brass-bright)}
 
   /* ---------- footer ---------- */
   footer{background:var(--ink-soft);color:var(--muted-dark);padding:34px 0;border-top:1px solid var(--line-dark)}
@@ -361,7 +343,7 @@ find-and-replace these placeholders:
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">1,200+ projects since 2018 &middot; 420+ 5&#9733; reviews</span>
+      <span class="eyebrow">Serving LA &amp; OC &middot; Since 2018</span>
       <h1>Mounted level. Built right. <span class="accent">The first time.</span></h1>
       <p class="lede">Art, TVs, mirrors, shelves, and furniture, installed by a meticulous pro who brings every tool (yes, the vacuum too). Drywall, brick, concrete, plaster, all handled, all left spotless.</p>
       <div class="cta-row">
@@ -369,6 +351,8 @@ find-and-replace these placeholders:
         <a class="btn btn-ghost on-dark" href="https://www.taskrabbit.com/profile/jonathan-c--208" target="_blank" rel="noopener noreferrer">Read what people have to say</a>
       </div>
       <div class="spec">
+        <span><b>1,200+</b> projects since 2018</span><span class="dot">&middot;</span>
+        <span><b>420+</b> 5&#9733; reviews</span><span class="dot">&middot;</span>
         <span>Bilingual <b>EN/ES</b></span><span class="dot">&middot;</span>
         <span><b>Background/ID verified</b></span>
       </div>
@@ -490,16 +474,6 @@ find-and-replace these placeholders:
         </div>
       </div>
     </div>
-
-    <div class="badges reveal">
-      <span class="badge"><span class="b-dot"></span>ID Verified</span>
-      <!-- Only include the next badge if you actually carry liability insurance:
-      <span class="badge"><span class="b-dot"></span>Licensed &amp; Insured</span>
-      -->
-      <span class="badge"><span class="b-dot"></span>Bilingual EN / ES</span>
-      <span class="badge"><span class="b-dot"></span>All tools provided</span>
-      <span class="badge"><span class="b-dot"></span>Satisfaction guaranteed &mdash; I fix it free</span>
-    </div>
   </div>
 </section>
 
@@ -533,8 +507,8 @@ find-and-replace these placeholders:
       </article>
       <article class="svc">
         <span class="stag">Finish work</span>
-        <h3>Repairs &amp; Plaster</h3>
-        <p>Drywall patching, secure anchoring, and high-end Venetian &amp; tadelakt plaster. Walls and surfaces that look like a designer signed off on them.</p>
+        <h3>Repairs &amp; Paint</h3>
+        <p>Drywall patching, secure anchoring, and interior painting that looks like a designer signed off on them.</p>
         <div class="meta">By request &middot; LA &amp; OC</div>
       </article>
     </div>
@@ -625,12 +599,6 @@ find-and-replace these placeholders:
     <p class="sub">Most jobs booked same week. Tell me what you need and I&rsquo;ll bring the tools, the anchors, and the vacuum.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="{{BOOKING_LINK}}">Book a time <span class="arrow">&rarr;</span></a>
-      <a class="btn btn-ghost on-dark" href="tel:{{PHONE_DIGITS}}">Call {{PHONE}}</a>
-    </div>
-    <div class="contact">
-      <span>Text or call: <a href="tel:{{PHONE_DIGITS}}">{{PHONE}}</a></span>
-      <span>Email: <a href="mailto:{{EMAIL}}">{{EMAIL}}</a></span>
-      <span>Instagram: <a href="{{INSTAGRAM_URL}}">{{INSTAGRAM_HANDLE}}</a></span>
     </div>
   </div>
 </section>
@@ -638,7 +606,7 @@ find-and-replace these placeholders:
 <!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="wrap row">
-    <span class="wordmark"><span class="tick" style="border-color:var(--brass)"></span>Jonathan&rsquo;s Handyman Services</span>
+    <span class="wordmark"><span class="tick" style="border-color:var(--brass)"></span>Jonathan&rsquo;s Services</span>
     <span class="fmono">Los Angeles &amp; Orange County &middot; Mounting &amp; Assembly</span>
     <span class="fmono">&copy; <span id="yr"></span></span>
   </div>

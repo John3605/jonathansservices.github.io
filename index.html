@@ -113,8 +113,8 @@ find-and-replace this placeholder:
   .btn-primary:hover{background:var(--brass-bright);transform:translateY(-2px)}
   .btn-ghost{border-color:var(--line);color:var(--ink)}
   .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
-  .btn-ghost.on-dark{border-color:var(--line-dark);color:var(--paper)}
-  .btn-ghost.on-dark:hover{border-color:var(--paper)}
+  .btn-ghost.on-dark{border-color:var(--brass-bright);color:var(--brass-bright);padding:19px 30px}
+  .btn-ghost.on-dark:hover{border-color:var(--paper);color:var(--paper)}
   .btn .arrow{font-family:var(--font-body)}
 
   /* ---------- top bar ---------- */
@@ -122,14 +122,14 @@ find-and-replace this placeholder:
     background:rgba(233,227,214,.82);backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
-  .topbar .row{display:flex;align-items:center;justify-content:space-between;min-height:62px;flex-wrap:nowrap}
+  .topbar .row{display:flex;align-items:center;justify-content:space-between;min-height:80px;flex-wrap:nowrap}
   .wordmark{
-    font-family:var(--font-display);font-weight:700;font-size:1.02rem;letter-spacing:-.01em;
-    display:flex;align-items:center;gap:10px;white-space:nowrap;
+    font-family:var(--font-display);font-weight:700;font-size:1.6rem;letter-spacing:-.01em;
+    display:flex;align-items:center;gap:12px;white-space:nowrap;
   }
   .wordmark .tick{width:9px;height:9px;border:1.5px solid var(--brass);border-radius:50%;flex:0 0 auto}
   .wordmark-avatar{
-    width:34px;height:34px;border-radius:50%;flex:0 0 auto;overflow:hidden;
+    width:52px;height:52px;border-radius:50%;flex:0 0 auto;overflow:hidden;
     background:var(--ink-soft);border:1.5px solid var(--brass);
     display:flex;align-items:center;justify-content:center;
   }
@@ -139,12 +139,16 @@ find-and-replace this placeholder:
   .topbar .links a.nav{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
   .topbar .links a.nav:hover{color:var(--ink)}
   .topbar .btn{padding:10px 18px}
-  @media(max-width:760px){ .topbar .links a.nav{display:none} }
+  @media(max-width:880px){ .topbar .links a.nav{display:none} }
   @media(max-width:520px){
-    .topbar .row{padding:0 16px}
-    .wordmark{font-size:.82rem;gap:7px}
-    .wordmark-avatar{width:26px;height:26px}
-    .topbar .btn{font-size:.6rem;padding:8px 11px;letter-spacing:.02em}
+    .topbar .row{padding:0 14px;min-height:70px}
+    .wordmark{font-size:1.15rem;gap:8px}
+    .wordmark-avatar{width:38px;height:38px}
+    .topbar .btn{font-size:.56rem;padding:7px 9px;letter-spacing:0}
+  }
+  @media(max-width:340px){
+    .topbar .row{flex-wrap:wrap;justify-content:center;row-gap:10px;padding-top:10px;padding-bottom:10px;min-height:0}
+    .topbar .btn{font-size:.66rem;padding:9px 14px;letter-spacing:.02em}
   }
 
   /* ---------- hero ---------- */
@@ -156,10 +160,10 @@ find-and-replace this placeholder:
     margin:20px 0 22px;max-width:14ch;
   }
   .hero p.lede{font-size:clamp(1.02rem,1.7vw,1.22rem);color:#d9d2c4;max-width:50ch;margin-bottom:34px}
-  .hero .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:54px}
+  .hero .cta-row{display:flex;flex-wrap:wrap;align-items:flex-start;gap:14px;margin-bottom:54px}
   .spec{
     display:flex;flex-wrap:wrap;gap:10px 22px;padding-top:26px;border-top:1px solid var(--line-dark);
-    font-family:var(--font-mono);font-size:.78rem;letter-spacing:.05em;color:var(--muted-dark);
+    font-family:var(--font-mono);font-size:.78rem;letter-spacing:.05em;color:var(--brass-bright);
   }
   .spec b{color:var(--paper);font-weight:600}
   .spec .dot{color:var(--brass)}
@@ -348,7 +352,7 @@ find-and-replace this placeholder:
       <p class="lede">Art, TVs, mirrors, shelves, and furniture, installed by a meticulous pro who brings every tool (yes, the vacuum too). Drywall, brick, concrete, plaster, all handled, all left spotless.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="{{BOOKING_LINK}}">Book a time <span class="arrow">&rarr;</span></a>
-        <a class="btn btn-ghost on-dark" href="https://www.taskrabbit.com/profile/jonathan-c--208" target="_blank" rel="noopener noreferrer">Read what people have to say</a>
+        <a class="btn btn-ghost on-dark" href="https://www.taskrabbit.com/profile/jonathan-c--208" target="_blank" rel="noopener noreferrer">Read what people have to say <span class="arrow">&rarr;</span></a>
       </div>
       <div class="spec">
         <span><b>1,200+</b> projects since 2018</span><span class="dot">&middot;</span>

@@ -229,15 +229,16 @@ find-and-replace this placeholder:
 
   /* ---------- proof / testimonials carousel ---------- */
   .carousel{
-    overflow:hidden;position:relative;
+    overflow-x:auto;overflow-y:hidden;position:relative;cursor:grab;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;
     -webkit-mask-image:linear-gradient(to right,transparent,black 48px,black calc(100% - 48px),transparent);
             mask-image:linear-gradient(to right,transparent,black 48px,black calc(100% - 48px),transparent);
   }
-  .carousel-track{display:flex;gap:20px;width:max-content;animation:marquee 42s linear infinite}
+  .carousel::-webkit-scrollbar{display:none}
+  .carousel.dragging{cursor:grabbing;scroll-behavior:auto;user-select:none}
+  .carousel + .carousel{margin-top:20px}
+  .carousel-track{display:flex;gap:20px;width:max-content}
   .carousel-set{display:flex;gap:20px}
-  .carousel:hover .carousel-track,
-  .carousel:focus-within .carousel-track{animation-play-state:paused}
-  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   .rcard{
     flex:0 0 320px;background:var(--ink);border:1px solid var(--line-dark);border-radius:2px;
     padding:26px 24px;display:flex;flex-direction:column;gap:14px;
@@ -307,7 +308,6 @@ find-and-replace this placeholder:
     .reveal{opacity:1;transform:none;transition:none}
     html{scroll-behavior:auto}
     .btn:hover,.btn-primary:hover,.btn-ghost:hover,.sticky-cta:hover{transform:none}
-    .carousel-track{animation:none}
     .sticky-cta .dot{animation:none}
   }
 
@@ -380,9 +380,12 @@ find-and-replace this placeholder:
       <p class="kicker">A running reel of your favorite 5-star reviews. Replace each slot with a real quote and that client&rsquo;s photo.</p>
     </div>
     <!-- PASTE REAL REVIEWS. Keep them genuine — these are empty slots, not sample quotes.
-         The card set below is intentionally duplicated once (aria-hidden) so the
-         carousel loops seamlessly — edit BOTH copies when you swap in real reviews. -->
-    <div class="carousel reveal" role="region" aria-label="Client review carousel">
+         30 slots per row, each row's card set is intentionally duplicated once
+         (aria-hidden) so the carousel loops seamlessly — edit BOTH copies of a
+         slot when you swap in a real review. Both rows auto-scroll and can also
+         be dragged/swiped by hand; row 2 starts offset by half a card so the
+         two rows don't line up. -->
+    <div class="carousel reveal" data-row="1" role="region" aria-label="Client review carousel, row 1 of 2">
       <div class="carousel-track">
         <div class="carousel-set">
           <article class="rcard">
@@ -402,7 +405,7 @@ find-and-replace this placeholder:
           <article class="rcard">
             <div class="rc-head">
               <span class="avatar"><!-- <img src="photos/reviewer-03.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
-              <div class="rc-id"><span class="rc-name">First name L. &middot; DTLA</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Downtown LA</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
             </div>
             <p>[ Paste a real 5-star review here. ]</p>
           </article>
@@ -427,6 +430,174 @@ find-and-replace this placeholder:
             </div>
             <p>[ Paste a real 5-star review here. ]</p>
           </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-07.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Beverly Hills</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-08.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; West Hollywood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-09.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Silver Lake</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-10.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Echo Park</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-11.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Manhattan Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-12.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Redondo Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-13.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Long Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-14.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Glendale</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-15.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Burbank</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-16.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Sherman Oaks</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-17.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Studio City</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-18.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Brentwood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-19.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Westwood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-20.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Hollywood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-21.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Los Feliz</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-22.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Mar Vista</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-23.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Playa Vista</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-24.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; El Segundo</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-25.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Torrance</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-26.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Irvine</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-27.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Newport Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-28.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Huntington Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-29.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Costa Mesa</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-30.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Laguna Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
         </div>
         <div class="carousel-set" aria-hidden="true">
           <article class="rcard">
@@ -446,7 +617,7 @@ find-and-replace this placeholder:
           <article class="rcard">
             <div class="rc-head">
               <span class="avatar"><span class="avatar-ph">Photo</span></span>
-              <div class="rc-id"><span class="rc-name">First name L. &middot; DTLA</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Downtown LA</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
             </div>
             <p>[ Paste a real 5-star review here. ]</p>
           </article>
@@ -468,6 +639,602 @@ find-and-replace this placeholder:
             <div class="rc-head">
               <span class="avatar"><span class="avatar-ph">Photo</span></span>
               <div class="rc-id"><span class="rc-name">First name L. &middot; Malibu</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Beverly Hills</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; West Hollywood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Silver Lake</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Echo Park</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Manhattan Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Redondo Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Long Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Glendale</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Burbank</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Sherman Oaks</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Studio City</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Brentwood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Westwood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Hollywood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Los Feliz</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Mar Vista</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Playa Vista</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; El Segundo</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Torrance</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Irvine</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Newport Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Huntington Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Costa Mesa</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Laguna Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+        </div>
+      </div>
+    </div>
+    <div class="carousel reveal" data-row="2" role="region" aria-label="Client review carousel, row 2 of 2">
+      <div class="carousel-track">
+        <div class="carousel-set">
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-31.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Santa Monica</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-32.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Venice</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-33.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Downtown LA</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-34.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Culver City</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-35.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Pasadena</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-36.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Malibu</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-37.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Beverly Hills</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-38.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; West Hollywood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-39.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Silver Lake</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-40.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Echo Park</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-41.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Manhattan Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-42.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Redondo Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-43.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Long Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-44.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Glendale</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-45.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Burbank</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-46.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Sherman Oaks</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-47.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Studio City</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-48.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Brentwood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-49.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Westwood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-50.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Hollywood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-51.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Los Feliz</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-52.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Mar Vista</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-53.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Playa Vista</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-54.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; El Segundo</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-55.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Torrance</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-56.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Irvine</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-57.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Newport Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-58.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Huntington Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-59.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Costa Mesa</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><!-- <img src="photos/reviewer-60.jpg" alt="First name L."> --><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Laguna Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+        </div>
+        <div class="carousel-set" aria-hidden="true">
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Santa Monica</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Venice</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Downtown LA</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Culver City</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Pasadena</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Malibu</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Beverly Hills</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; West Hollywood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Silver Lake</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Echo Park</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Manhattan Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Redondo Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Long Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Glendale</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Burbank</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Sherman Oaks</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Studio City</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Brentwood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Westwood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Hollywood</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Los Feliz</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Mar Vista</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Playa Vista</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; El Segundo</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Torrance</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Irvine</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Newport Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Huntington Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Costa Mesa</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+            </div>
+            <p>[ Paste a real 5-star review here. ]</p>
+          </article>
+          <article class="rcard">
+            <div class="rc-head">
+              <span class="avatar"><span class="avatar-ph">Photo</span></span>
+              <div class="rc-id"><span class="rc-name">First name L. &middot; Laguna Beach</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
             </div>
             <p>[ Paste a real 5-star review here. ]</p>
           </article>
@@ -630,6 +1397,89 @@ find-and-replace this placeholder:
       });
     }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
     items.forEach(function(el){ io.observe(el); });
+  })();
+
+  // review carousels: auto-scroll right-to-left, draggable/swipeable, infinite loop
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var SPEED_PX_S = 36; // both rows run at 75% of the original single-row speed
+    var carousels = Array.prototype.slice.call(document.querySelectorAll('.carousel'));
+
+    carousels.forEach(function(el){
+      var track = el.querySelector('.carousel-track');
+      if(!track) return;
+
+      var setWidth = 0;
+      function measure(){ setWidth = track.scrollWidth / 2; }
+      measure();
+      window.addEventListener('resize', measure);
+
+      // row 2 starts staggered half a card (+ half the gap) after row 1
+      if(el.dataset.row === '2'){
+        var firstCard = track.querySelector('.rcard');
+        if(firstCard){
+          var gap = parseFloat(getComputedStyle(track).columnGap) || 20;
+          el.scrollLeft = (firstCard.offsetWidth + gap) / 2;
+        }
+      }
+
+      function wrap(){
+        if(setWidth <= 0) return;
+        if(el.scrollLeft >= setWidth) el.scrollLeft -= setWidth;
+        else if(el.scrollLeft < 0) el.scrollLeft += setWidth;
+      }
+
+      var dragging = false, hovering = false, startX = 0, startScroll = 0, lastInteraction = 0;
+
+      el.addEventListener('mousedown', function(e){
+        dragging = true;
+        startX = e.pageX; startScroll = el.scrollLeft;
+        el.classList.add('dragging');
+        lastInteraction = performance.now();
+        e.preventDefault();
+      });
+      window.addEventListener('mousemove', function(e){
+        if(!dragging) return;
+        el.scrollLeft = startScroll - (e.pageX - startX);
+        lastInteraction = performance.now();
+      });
+      window.addEventListener('mouseup', function(){
+        if(!dragging) return;
+        dragging = false;
+        el.classList.remove('dragging');
+        lastInteraction = performance.now();
+      });
+      el.addEventListener('mouseenter', function(){ hovering = true; });
+      el.addEventListener('mouseleave', function(){ hovering = false; });
+      el.addEventListener('touchstart', function(){ lastInteraction = performance.now(); }, {passive:true});
+      el.addEventListener('touchmove', function(){ lastInteraction = performance.now(); }, {passive:true});
+      el.addEventListener('wheel', function(){ lastInteraction = performance.now(); }, {passive:true});
+      el.addEventListener('scroll', wrap, {passive:true});
+
+      if(reduce) return; // manual scroll/drag/swipe still works; just no auto-advance
+
+      // el.scrollLeft rounds to whole pixels on read-back, so accumulating the
+      // sub-pixel per-frame increment via "el.scrollLeft += x" drifts fast
+      // (each ~0.6px step rounds up to 1px, ~67% too fast). Keep our own
+      // float position and only resync it from the DOM while paused.
+      var pos = el.scrollLeft;
+      var last = null;
+      function tick(now){
+        if(last === null) last = now;
+        var dt = (now - last) / 1000;
+        last = now;
+        if(!dragging && !hovering && (now - lastInteraction) > 500){
+          pos += SPEED_PX_S * dt;
+          if(pos >= setWidth) pos -= setWidth;
+          else if(pos < 0) pos += setWidth;
+          el.scrollLeft = pos;
+        } else {
+          pos = el.scrollLeft;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
   })();
 </script>
 </body>

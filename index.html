@@ -197,6 +197,13 @@ find-and-replace this placeholder:
 
   /* ---------- section scaffold ---------- */
   .section{padding:84px 0}
+  .how{padding:56px 0 48px}
+  .how-steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:22px 0 26px}
+  .how-steps li{display:flex;gap:14px;align-items:baseline;padding-top:16px;border-top:1px solid var(--line)}
+  .how-num{font-family:var(--font-mono);font-size:.78rem;color:var(--brass);letter-spacing:.1em;flex:0 0 auto}
+  .how-steps p{font-size:1.02rem;line-height:1.5}
+  .how-note{color:var(--muted);font-size:.95rem;max-width:62ch}
+  @media(max-width:760px){.how{padding:44px 0 36px}.how-steps{grid-template-columns:1fr;gap:14px;margin:18px 0 22px}}
   .section.dark{background:var(--ink-soft);color:var(--paper)}
   .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:40px;flex-wrap:wrap}
   .sec-head .num{font-family:var(--font-mono);font-size:.78rem;color:var(--brass);letter-spacing:.1em}
@@ -1249,6 +1256,19 @@ find-and-replace this placeholder:
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="how" id="how" aria-labelledby="how-title">
+  <div class="wrap">
+    <span class="eyebrow" id="how-title">How it works</span>
+    <ol class="how-steps reveal">
+      <li><span class="how-num">01</span><p>Send photos or a quick video of the space and what you need.</p></li>
+      <li><span class="how-num">02</span><p>Get a fixed quote, usually same day.</p></li>
+      <li><span class="how-num">03</span><p>We show up and get it done. The price doesn&rsquo;t change unless the job does.</p></li>
+    </ol>
+    <p class="how-note">You&rsquo;re paying for nearly a decade&rsquo;s worth of my expertise where it counts. The crew handles the rest, so it&rsquo;s done faster and costs less.</p>
   </div>
 </section>
 

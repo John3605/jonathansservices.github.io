@@ -161,6 +161,8 @@ find-and-replace this placeholder:
     margin:20px 0 22px;max-width:14ch;
   }
   .hero p.lede{font-size:clamp(1.02rem,1.7vw,1.22rem);color:#d9d2c4;max-width:50ch;margin-bottom:34px}
+  .hero p.lede:has(+ .lede-2){margin-bottom:14px}
+  .hero p.lede-2{font-size:clamp(.92rem,1.4vw,1.04rem);color:var(--muted-dark)}
   .hero .cta-row{display:flex;flex-wrap:wrap;align-items:flex-start;gap:14px;margin-bottom:54px}
   .spec{
     display:flex;flex-wrap:wrap;gap:10px 22px;padding-top:26px;border-top:1px solid var(--line-dark);
@@ -351,6 +353,7 @@ find-and-replace this placeholder:
       <span class="eyebrow">Serving LA &amp; OC &middot; Since 2018</span>
       <h1>Mounted level. Built right. <span class="accent">The first time.</span></h1>
       <p class="lede">Art, TVs, mirrors, shelves, and furniture, installed by a meticulous pro who brings every tool (yes, the vacuum too). Drywall, brick, concrete, plaster, all handled, all left spotless.</p>
+      <p class="lede lede-2">Bigger job? I bring a crew. You&rsquo;re paying for my 8 years of expertise where it counts, and the crew handles the rest, so it&rsquo;s done faster and costs less. Every job gets a fixed quote up front.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://squareup.com/appointments/book/LW6Q9RRQ4TN69">Book a time <span class="arrow">&rarr;</span></a>
         <a class="btn btn-ghost on-dark" href="https://www.taskrabbit.com/profile/jonathan-c--208" target="_blank" rel="noopener noreferrer">Read what people have to say <span class="arrow">&rarr;</span></a>

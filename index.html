@@ -219,6 +219,21 @@ find-and-replace this placeholder:
     .hero-stat-num{font-size:1.5rem}
   }
 
+  /* ---------- stats band ---------- */
+  .stats{background:var(--ink-soft);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:44px 0}
+  .stats .wrap{max-width:1450px}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+  .stat{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:4px 16px}
+  .stat + .stat{border-left:1px solid var(--line-dark)}
+  .stat-num{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,3.6vw,3rem);line-height:1;letter-spacing:-.02em;color:var(--brass-bright)}
+  .stat-label{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dark)}
+  @media(max-width:760px){
+    .stats{padding:30px 0}
+    .stats-grid{grid-template-columns:1fr 1fr;row-gap:26px}
+    .stat:nth-child(3){border-left:0}
+    .stat-label{font-size:.66rem}
+  }
+
   /* ---------- section scaffold ---------- */
   .section{padding:84px 0}
   .how{padding:64px 0 56px;text-align:center}
@@ -400,8 +415,6 @@ find-and-replace this placeholder:
         <a class="btn btn-ghost on-dark" href="https://www.taskrabbit.com/profile/jonathan-c--208" target="_blank" rel="noopener noreferrer">Read what people have to say <span class="arrow">&rarr;</span></a>
       </div>
       <div class="spec">
-        <span><b>1,200+</b> projects since 2018</span><span class="dot">&middot;</span>
-        <span><b>420+</b> 5&#9733; reviews</span><span class="dot">&middot;</span>
         <span><b>EN/ES</b> Bilingual</span><span class="dot">&middot;</span>
         <span><b>Background/ID verified</b></span>
       </div>
@@ -417,6 +430,16 @@ find-and-replace this placeholder:
         <span class="hero-stat-label">Projects<br>since 2018</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<section class="stats" aria-label="By the numbers">
+  <div class="wrap stats-grid">
+    <div class="stat"><span class="stat-num">1,200+</span><span class="stat-label">Projects completed</span></div>
+    <div class="stat"><span class="stat-num">420+</span><span class="stat-label">Five-star reviews</span></div>
+    <div class="stat"><span class="stat-num">8 years</span><span class="stat-label">Serving LA &amp; OC</span></div>
+    <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Satisfaction guarantee</span></div>
   </div>
 </section>
 

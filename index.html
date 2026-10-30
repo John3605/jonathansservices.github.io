@@ -140,7 +140,31 @@ find-and-replace this placeholder:
   .topbar .links a.nav{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
   .topbar .links a.nav:hover{color:var(--ink)}
   .topbar .btn{padding:10px 18px}
-  @media(max-width:880px){ .topbar .links a.nav{display:none} }
+  .phone{display:flex;align-items:center;gap:10px;padding-left:22px;border-left:1px solid var(--line)}
+  .phone-call{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.82rem;font-weight:600;letter-spacing:.03em;color:var(--ink);white-space:nowrap}
+  .phone-call svg{color:var(--brass)}
+  .phone-text{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--brass);border:1px solid var(--brass);padding:4px 8px;border-radius:2px}
+  .phone-call:hover,.phone-text:hover{color:var(--brass-bright)}
+  @media(max-width:1100px){ .topbar .links a.nav{display:none} }
+  @media(max-width:880px){
+    .phone{padding-left:0;border-left:0}
+    .phone-num,.phone-text{display:none}
+    .phone-call{width:40px;height:40px;justify-content:center;border:1.5px solid var(--brass);border-radius:50%}
+    .phone-call svg{width:18px;height:18px}
+  }
+  @media(max-width:520px){
+    .topbar .links{gap:8px;flex:0 0 auto}
+    .topbar .btn{text-align:center;line-height:1.35;white-space:normal;max-width:92px}
+    .phone-call{width:34px;height:34px;flex:0 0 auto}
+  }
+  @media(max-width:380px){
+    header.topbar .row{padding:0 12px}
+    header.topbar .wordmark{font-size:1rem;gap:7px}
+    header.topbar .wordmark-avatar{width:32px;height:32px}
+    .topbar .links{gap:6px}
+    .phone-call{width:32px;height:32px}
+    .phone-call svg{width:15px;height:15px}
+  }
   @media(max-width:520px){
     .topbar .row{padding:0 14px;min-height:70px}
     .wordmark{font-size:1.15rem;gap:8px}
@@ -297,6 +321,7 @@ find-and-replace this placeholder:
   /* ---------- footer ---------- */
   footer{background:var(--ink-soft);color:var(--muted-dark);padding:34px 0;border-top:1px solid var(--line-dark)}
   footer .row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  footer .foot-phone{color:var(--brass-bright)}
   footer .wordmark{color:var(--paper);font-size:.95rem}
   footer .fmono{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.04em}
 
@@ -350,6 +375,13 @@ find-and-replace this placeholder:
       <a class="nav" href="#services">Services</a>
       <a class="nav" href="#work">The Work</a>
       <a class="nav" href="#proof">Reviews</a>
+      <span class="phone">
+        <a class="phone-call" href="tel:+13104905859" aria-label="Call (310) 490-5859">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg>
+          <span class="phone-num">(310) 490-5859</span>
+        </a>
+        <a class="phone-text" href="sms:+13104905859">Text</a>
+      </span>
       <a class="btn btn-primary" href="https://squareup.com/appointments/book/LW6Q9RRQ4TN69">Check availability</a>
     </nav>
   </div>
@@ -1406,6 +1438,7 @@ find-and-replace this placeholder:
   <div class="wrap row">
     <span class="wordmark"><span class="tick" style="border-color:var(--brass)"></span>Jonathan&rsquo;s Services</span>
     <span class="fmono">Los Angeles &amp; Orange County &middot; Mounting &amp; Assembly</span>
+    <span class="fmono">Call or text <a class="foot-phone" href="tel:+13104905859">(310) 490-5859</a> &middot; <a class="foot-phone" href="sms:+13104905859">Text</a></span>
     <span class="fmono">&copy; <span id="yr"></span></span>
   </div>
 </footer>

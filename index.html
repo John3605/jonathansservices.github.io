@@ -199,15 +199,6 @@ find-and-replace this placeholder:
   .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
   .hero-photo{position:relative}
   .hero-frame{aspect-ratio:4/5}
-  .hero-stat{
-    position:absolute;left:-18px;bottom:-18px;
-    background:var(--brass);color:var(--ink);
-    padding:18px 22px;border-radius:2px;
-    box-shadow:0 14px 30px rgba(0,0,0,.3);
-    display:flex;flex-direction:column;gap:2px;
-  }
-  .hero-stat-num{font-family:var(--font-display);font-weight:800;font-size:1.85rem;line-height:1}
-  .hero-stat-label{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;line-height:1.3}
   @media(max-width:900px){
     .hero-grid{grid-template-columns:1fr;gap:36px}
     .hero-photo{max-width:525px}
@@ -215,8 +206,6 @@ find-and-replace this placeholder:
   @media(max-width:520px){
     .hero{padding-top:40px}
     .hero-photo{margin-left:auto;margin-right:auto}
-    .hero-stat{left:12px;bottom:-16px;padding:13px 18px}
-    .hero-stat-num{font-size:1.5rem}
   }
 
   /* ---------- stats band ---------- */
@@ -454,10 +443,6 @@ find-and-replace this placeholder:
         <span class="corner tl"></span><span class="corner br"></span>
         <!-- <img src="photos/best-install.jpg" alt="Jonathan's favorite install"> -->
         <span class="ph"><b>Add your best install</b>the one job you&rsquo;re proudest of</span>
-      </div>
-      <div class="hero-stat">
-        <span class="hero-stat-num">1,200+</span>
-        <span class="hero-stat-label">Projects<br>since 2018</span>
       </div>
     </div>
   </div>
@@ -1425,7 +1410,7 @@ find-and-replace this placeholder:
         </button>
         <div class="svc-panel" id="svc-p4" role="region" aria-labelledby="svc-b4" inert>
           <div class="svc-panel-in">
-            <p>Layout, art placement, and finishing touches so the room comes together, not just gets filled.</p>
+            <p>Layouts, colors, furniture selection, art, shelving, TV placement and installation. Truly the entire suite of services needed to make your spaces come to life, not just filled.</p>
             <div class="meta">By request &middot; LA &amp; OC</div>
             <a class="svc-cta" href="https://squareup.com/appointments/book/LW6Q9RRQ4TN69">Check availability <span class="arrow">&rarr;</span></a>
           </div>
